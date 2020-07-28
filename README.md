@@ -18,3 +18,7 @@ Site em formato institucional para divulgação de trabalhos e conteúdo relacio
 ## Como iniciar
 
 `npm run dev`
+
+## Mais informações
+
+Para mais informações entre em contato comigo pelo e-mail ola@lucaspedroni.com.br
