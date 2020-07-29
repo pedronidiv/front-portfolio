@@ -5,6 +5,7 @@ import "isomorphic-fetch";
 import Layout from "../components/Layout";
 import HomeBanner from "../components/HomeBanner";
 import HomeAbout from "../components/HomeAbout";
+import HomeSkills from "../components/HomeSkills";
 
 const Home = ({ data }) => {
   const aboutAnchorRef = useRef();
@@ -14,6 +15,7 @@ const Home = ({ data }) => {
       <HomeBanner scrollToRef={aboutAnchorRef} />
       <div id="aboutAnchor" ref={aboutAnchorRef}></div>
       <HomeAbout />
+      <HomeSkills />
     </Layout>
   );
 };

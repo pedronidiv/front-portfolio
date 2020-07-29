@@ -98,6 +98,7 @@ const StyledHomeBanner = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 auto;
   }
 
   &::after {

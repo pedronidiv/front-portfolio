@@ -9,9 +9,10 @@ const Box = ({
   centerProps = {},
   bottomProps = {},
   bottom,
+  ...props
 }) => {
   return (
-    <StyledBoxWrapper className={`${direction}`}>
+    <StyledBoxWrapper {...props} className={`${direction}`}>
       <StyledBox>
         <StyledBoxMain>
           <StyledBoxAside {...asideProps}>{aside}</StyledBoxAside>
@@ -32,12 +33,12 @@ const StyledBoxMain = styled.div`
   display: flex;
 `;
 const StyledBox = styled.section`
-  background-color: #191919;
+  background-color: #101010;
   color: rgba(255, 255, 255, 0.7);
   display: flex;
   flex-direction: column;
   width: 80%;
-  padding: 64px;
+  padding: var(--box-padding);
   box-shadow: 0 0 30px black;
   flex-wrap: wrap;
 `;

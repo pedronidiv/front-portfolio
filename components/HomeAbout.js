@@ -11,6 +11,9 @@ const HomeAbout = () => {
 
   return (
     <Box
+      style={{
+        marginTop: 'calc(-1 * var(--header-height))'
+      }} 
       aside={
         <HomeAboutAside
           activeListItem={activeListItem}
