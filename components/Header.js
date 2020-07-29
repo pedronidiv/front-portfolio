@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 export const Header = () => {
   const router = useRouter();
-
 
   const nav = [
     {
@@ -34,8 +33,26 @@ export const Header = () => {
     },
   ];
 
+  const [small, setSmall] = useState(false);
+
+  const handleScroll = useCallback((ev) => {
+    if (window.scrollY > 120) {
+      setSmall(true);
+    } else {
+      setSmall(false);
+    }
+  });
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <StyledHeader>
+    <StyledHeader className={small ? "small" : undefined}>
       <div>
         <Link href="/">
           <StyledHeaderLogo>
@@ -47,7 +64,13 @@ export const Header = () => {
             {nav.map((link) => (
               <li key={link.href}>
                 <Link href={link.href}>
-                  <a className={router.pathname === link.href ? 'active' : undefined}>{link.label}</a>
+                  <a
+                    className={
+                      router.pathname === link.href ? "active" : undefined
+                    }
+                  >
+                    {link.label}
+                  </a>
                 </Link>
               </li>
             ))}
@@ -78,14 +101,37 @@ export const Header = () => {
   );
 };
 
+const StyledHeaderLogo = styled.a`
+  display: block;
+  width: calc(var(--header-height) * 0.8);
+  height: 100%;
+  transition: 0.3s;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+`;
+
 const StyledHeader = styled.header`
   background-image: linear-gradient(180deg, black, transparent);
-  z-index: 1;
+  z-index: 100;
   height: var(--header-height);
   width: 100%;
   position: fixed;
   left: 0;
   top: 0;
+  transition: 0.3s;
+  &.small {
+    height: calc(var(--header-height) * 0.6);
+    background-color: black;
+    box-shadow: 0 5px 30px black;
+    ${StyledHeaderLogo} {
+      width: calc(var(--header-height) * 0.6);
+    }
+  }
+
   & > div {
     width: var(--container-width);
     max-width: 100%;
@@ -96,18 +142,6 @@ const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-`;
-
-const StyledHeaderLogo = styled.a`
-  display: block;
-  width: 60px;
-  height: 48px;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
   }
 `;
 
