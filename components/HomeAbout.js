@@ -78,9 +78,10 @@ const HomeAboutAside = ({ activeListItem, onListItemSelected = () => {} }) => {
     <>
       <img
         src="/img/01.png"
-        width="180"
+        height="160"
         srcSet="/img/01.png 1x, /img/01@2x.png 2x,"
         alt=""
+        className="brightness--2"
         style={{ marginBottom: 16 }}
       />
       <BoxList
