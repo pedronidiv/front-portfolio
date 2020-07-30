@@ -2,19 +2,9 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import Link from "next/link";
+import { scrollTo } from "../helpers";
 
 const HomeBanner = (props) => {
-  const scrollTo = useCallback((ref) => {
-    try {
-      window.scroll({
-        top: ref.current.offsetTop,
-        left: 0,
-        behavior: "smooth",
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  });
 
   return (
     <StyledHomeBanner>
@@ -42,7 +32,7 @@ const HomeBanner = (props) => {
           </Link>
           <br />
           <StyledHomeBannerScrollDown
-            onClick={() => scrollTo(props.scrollToRef)}
+            onClick={() => scrollTo(props.scrollToRef.current || props.scrollToRef)}
             src="/icon/scroll-down.svg"
             role="button"
           ></StyledHomeBannerScrollDown>
@@ -120,7 +110,7 @@ const StyledHomeBanner = styled.section`
     left: 0;
     top: 100%;
     display: block;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), transparent);
+    background-image: linear-gradient(black, transparent);
   }
 `;
 
