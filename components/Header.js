@@ -57,8 +57,17 @@ export const Header = ({ nav }) => {
           </Scrollspy>
           <ul className="social">
             <li>
-              <a target="blank" href="http://instagram.com/pedronidev">
-                <img width="15" height="15" src="/icon/instagram.svg" alt="" />
+              <a target="blank" href="http://github.com/pedronidev">
+                <img width="19" height="19" src="/icon/github.svg" alt="" />
+              </a>
+            </li>
+            
+            <li>
+              <a
+                target="blank"
+                href="https://www.linkedin.com/in/lucas-pedroni-422460164/"
+              >
+                <img width="17" height="17" src="/icon/linkedin.svg" alt="" />
               </a>
             </li>
             <li>
@@ -67,11 +76,8 @@ export const Header = ({ nav }) => {
               </a>
             </li>
             <li>
-              <a
-                target="blank"
-                href="https://www.linkedin.com/in/lucas-pedroni-422460164/"
-              >
-                <img width="17" height="17" src="/icon/linkedin.svg" alt="" />
+              <a target="blank" href="https://wa.me/5554984256224">
+                <img width="19" height="19" src="/icon/whatsapp.svg" alt="" />
               </a>
             </li>
           </ul>
