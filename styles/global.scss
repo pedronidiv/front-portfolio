@@ -18,6 +18,10 @@
 
   /** Box */
   --box-padding: 64px;
+
+  /** Input */
+  --input-border: 1px solid rgba(255,255,255,.15);
+  --input-height: 50px;
 }
 
 *,
@@ -36,6 +40,7 @@ html {
 
 a {
   text-decoration: none;
+  color: var(--color-primary-light)
 }
 
 strong {
