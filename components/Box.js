@@ -93,6 +93,8 @@ const StyledBoxAside = styled.aside`
   width: 200px;
   flex: 0 0 200px;
   text-align: right;
+  font-size: 16px;
+  line-height: 28px;
 `;
 
 export default Box;
