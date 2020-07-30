@@ -4,15 +4,23 @@
   "description": "Front-end lucaspedroni.com.br",
   "main": "pages/index.js",
   "dependencies": {
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^8.0.0",
     "isomorphic-fetch": "^2.2.1",
     "next": "^9.5.0",
+    "next-compose-plugins": "^2.2.0",
+    "next-optimized-images": "^2.6.2",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scrollspy": "^3.4.3",
     "rellax": "^1.12.1",
+    "responsive-loader": "^2.0.0",
+    "sharp": "^0.25.4",
     "styled-components": "^5.1.1",
-    "swiper": "^6.0.4"
+    "swiper": "^6.0.4",
+    "webp-loader": "^0.6.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",

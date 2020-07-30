@@ -10,16 +10,14 @@ const HomeBanner = (props) => {
       <div>
         <StyledHomeBannerLeft>
           <img
-            src="/img/banner/me.png"
-            srcSet="/img/banner/me.png 1x, /img/banner/me@2x.png 2x"
+            src={require('../public/img/banner/me@2x.png?webp')}
             alt="Lucas Pedroni, foto de perfil"
           />
         </StyledHomeBannerLeft>
         <StyledHomeBannerRight>
           <img
             className="name"
-            src="/img/banner/name.png"
-            srcSet="/img/banner/name.png 1x, /img/banner/name@2x.png 2x"
+            src={require('../public/img/banner/name.png?webp')}
             alt="Lucas Pedroni, nome"
           />
           <span className="title">Lucas Pedroni</span>

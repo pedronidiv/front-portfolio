@@ -8,7 +8,10 @@ export const Layout = ({ children, nav = [] }) => {
   return (
     <>
       <Head></Head>
-      <LayoutStyled>
+      <LayoutStyled
+      style={{
+        backgroundImage: `url(${require('../public/img/background.jpg?webp')})`
+      }}>
         <Header nav={nav} />
         {children}
         <Footer />
@@ -20,7 +23,6 @@ export const Layout = ({ children, nav = [] }) => {
 const LayoutStyled = styled.div`
   padding-top: var(--header-height);
   min-height: 100vh;
-  background-image: url(/img/background.jpg);
   background-size: cover;
   background-position: top center;
   z-index: 1;
