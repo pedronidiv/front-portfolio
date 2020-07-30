@@ -22,6 +22,7 @@ const HomeBanner = (props) => {
             srcSet="/img/banner/name.png 1x, /img/banner/name@2x.png 2x"
             alt="Lucas Pedroni, nome"
           />
+          <span className="title">Lucas Pedroni</span>
           <span className="subtitle">DESENVOLVEDOR FULL STACK</span>
           <br />
 
@@ -52,16 +53,37 @@ const StyledHomeBannerRight = styled.div`
   position: relative;
   z-index: 1;
   text-align: center;
+  @media (max-width: 1280px) {
+    flex: 0 0 100%;
+    width: 100%;
+  }
   .name {
     width: 500px;
     display: block;
     filter: brightness(1.2);
     margin: 0 auto 32px;
+    @media (max-width: 1280px) {
+      display: none;
+    }
+  }
+  .title {
+    display: none;
+    @media (max-width: 1280px) {
+      display: block;
+      color: var(--color-primary-light);
+      font-size: 20px;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 64px;
+      margin-bottom: 32px;
+    }
   }
   .subtitle {
     color: var(--color-secondary);
     font-size: 14px;
     letter-spacing: 10px;
+    text-transform: uppercase;
   }
 `;
 const StyledHomeBannerScrollDown = styled.img`
@@ -70,8 +92,14 @@ const StyledHomeBannerScrollDown = styled.img`
   cursor: pointer;
   display: block;
   margin: 150px auto 0;
+  @media(max-width: 1280px) {
+    display: none;
+  }
 `;
 const StyledHomeBannerLeft = styled.div`
+  @media (max-width: 1280px) {
+    display: none;
+  }
   img {
     height: 750px;
     margin-right: 0;
@@ -95,6 +123,11 @@ const StyledHomeBanner = styled.section`
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
+    @media (max-width: 1280px) {
+      flex-wrap: wrap;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
   }
 
   &::after {

@@ -25,6 +25,9 @@ const LayoutStyled = styled.div`
   background-position: top center;
   z-index: 1;
   position: relative;
+  @media(max-width: 1280px) {
+    max-width: 100vw;
+  }
 `;
 
 export default Layout;

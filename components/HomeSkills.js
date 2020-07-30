@@ -51,7 +51,7 @@ const HomeSkillsAside = ({ activeListItem, onListItemSelected = () => {} }) => {
         height="160"
         srcSet="/img/02.png 1x, /img/02@2x.png 2x,"
         alt=""
-        className="brightness--2"
+        className="brightness--2 hide-mobile"
         style={{ marginBottom: 16 }}
       />
     </>
@@ -121,10 +121,19 @@ export const HomeSkillsSwiper = () => {
           marginTop: 32,
         }}
         navigation
-        slidesPerView={4}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
+        slidesPerView={3}
         onSwiper={setSwiper}
+        breakpoints={{
+          400: {
+            slidesPerView: 1.3
+          },
+          1279: {
+            slidesPerView: 3
+          },
+          1281: {
+            slidesPerView: 4
+          }
+        }}
       >
         {list.map(({ background, icon, label }) => (
           <SwiperSlide key={icon}>

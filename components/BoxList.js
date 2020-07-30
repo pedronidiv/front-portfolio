@@ -33,7 +33,7 @@ const BoxList = ({
         <StyledBoxListItem
           tabIndex="0"
           role="button"
-          onClick={() => _onItemSelected({key, label})}
+          onClick={() => _onItemSelected({ key, label })}
           key={key}
           className={_activeItem?.key === key ? "active" : undefined}
         >
@@ -58,15 +58,43 @@ const StyledBoxListItem = styled.li`
   &:hover {
     opacity: 1;
   }
+  &:focus {
+    opacity: 1;
+    outline: none;
+  }
 `;
 const StyledBoxList = styled.ul`
   list-style: none;
+
+  @media (max-width: 1280px) {
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border-bottom: 1px solid rgba(255,255,255,.2)
+  }
   ${StyledBoxListItem} {
     &.active {
       color: var(
         ${(props) =>
           props.color ? "--color-" + props.color : "--color-primary"}
       );
+      @media (max-width: 1280px) {
+        border-bottom: 2px solid
+          var(
+            ${(props) =>
+              props.color ? "--color-" + props.color : "--color-primary"}
+          );
+      }
+    }
+    @media (max-width: 1280px) {
+      border-bottom: 2px solid transparent; 
+      flex: 0 0 auto;
+      margin-right: 24px;
     }
   }
 `;

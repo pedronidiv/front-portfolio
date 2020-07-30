@@ -1,25 +1,35 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Box from "./Box";
 import Title from "./Title";
 import BoxContent from "./BoxContent";
 import BoxList from "./BoxList";
 import Button from "./Button";
 import styled from "styled-components";
+import useMobile from "../hooks/useMobile";
 
 const HomeAbout = (props) => {
   const [activeListItem, setActiveListItem] = useState("");
+  const isMobile = useMobile();
 
   return (
     <Box
       {...props}
       aside={
+        !isMobile && (
+          <HomeAboutAside
+            activeListItem={activeListItem}
+            onListItemSelected={(key) => setActiveListItem(key)}
+          />
+        )
+      }
+    >
+      <Title subTitle="Sobre" title={<h2>Olá, me chamo Lucas Pedroni</h2>} />
+      {isMobile && (
         <HomeAboutAside
           activeListItem={activeListItem}
           onListItemSelected={(key) => setActiveListItem(key)}
         />
-      }
-    >
-      <Title subTitle="Sobre" title={<h2>Olá, me chamo Lucas Pedroni</h2>} />
+      )}
       <BoxContent>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus
         id purus sed ornare. Quisque vehicula nisl placerat interdum dignissim.
@@ -37,7 +47,7 @@ const HomeAbout = (props) => {
         <br />
         <Button
           onClick={() => {
-            setActiveListItem({key: 'graduacao'});
+            setActiveListItem({ key: "graduacao" });
           }}
         >
           Quero!
@@ -82,7 +92,7 @@ const HomeAboutAside = ({ activeListItem, onListItemSelected = () => {} }) => {
         height="160"
         srcSet="/img/01.png 1x, /img/01@2x.png 2x,"
         alt=""
-        className="brightness--2"
+        className="brightness--2 hide-mobile"
         style={{ marginBottom: 16 }}
       />
       <BoxList

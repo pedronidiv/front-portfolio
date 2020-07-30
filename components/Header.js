@@ -111,7 +111,7 @@ const StyledHeader = styled.header`
   top: 0;
   transition: 0.3s;
   &.small {
-    height: calc(var(--header-height) * 0.6);
+    height: calc(var(--header-height) * 0.8);
     background-color: black;
     box-shadow: 0 5px 30px black;
     ${StyledHeaderLogo} {
@@ -194,6 +194,10 @@ const StyledHeaderNav = styled.nav`
           }
         }
       }
+    }
+
+    @media(max-width: 1280px) {
+      display:none;
     }
   }
   ul.social {

@@ -49,6 +49,9 @@ const StyledTitleWrapper = styled.div`
       font-weight: 500;
       font-size: inherit;
     }
+    @media(max-width: 1280px) {
+      font-size: 26px;
+    }
   }
   ${StyledSubTitle} {
     font-size: 18px;

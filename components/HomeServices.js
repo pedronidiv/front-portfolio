@@ -5,9 +5,11 @@ import BoxContent from "./BoxContent";
 import BoxList from "./BoxList";
 import Button from "./Button";
 import styled from "styled-components";
+import useMobile from "../hooks/useMobile";
 
 const HomeServices = (props) => {
   const [activeListItem, setActiveListItem] = useState(null);
+  const isMobile = useMobile();
 
   return (
     <Box
@@ -15,17 +17,30 @@ const HomeServices = (props) => {
       asideProps={{
         style: {
           width: 240,
-          flex: '0 240 240px'
-        }
+          flex: "0 240 240px",
+        },
       }}
       aside={
+        !isMobile && (
+          <HomeServicesAside
+            activeListItem={activeListItem}
+            onListItemSelected={(key) => setActiveListItem(key)}
+          />
+        )
+      }
+    >
+      <Title
+        subTitle="Serviços"
+        title={
+          <h2>{activeListItem?.label || "Soluções para qualquer projeto"}</h2>
+        }
+      />
+      {isMobile && (
         <HomeServicesAside
           activeListItem={activeListItem}
           onListItemSelected={(key) => setActiveListItem(key)}
         />
-      }
-    >
-      <Title subTitle="Serviços" title={<h2>{activeListItem?.label || 'Soluções para qualquer projeto'}</h2>} />
+      )}
       <BoxContent>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus
         id purus sed ornare. Quisque vehicula nisl placerat interdum dignissim.
@@ -41,9 +56,7 @@ const HomeServices = (props) => {
         <strong>E aí, vamos trocar uma ideia?</strong>
         <br />
         <br />
-        <Button>
-          Vamos
-        </Button>
+        <Button>Vamos</Button>
       </BoxContent>
     </Box>
   );
@@ -70,7 +83,7 @@ const HomeServicesAside = ({
       key: "sistemas",
       label: "Sistemas",
     },
-    
+
     {
       key: "plataformas",
       label: "Plataformas",
@@ -92,7 +105,7 @@ const HomeServicesAside = ({
         height="160"
         srcSet="/img/03.png 1x, /img/03@2x.png 2x,"
         alt=""
-        className="brightness--2"
+        className="brightness--2 hide-mobile"
         style={{ marginBottom: 16 }}
       />
       <BoxList

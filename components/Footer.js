@@ -6,7 +6,11 @@ const Footer = () => {
     <StyledFooter>
       <div>
         <div>
-          <img className="logo" src="/img/isotipo.svg" alt="Lucas Pedroni isotipo"/>
+          <img
+            className="logo"
+            src="/img/isotipo.svg"
+            alt="Lucas Pedroni isotipo"
+          />
         </div>
         <div>
           <strong>WhatsApp</strong>
@@ -52,11 +56,20 @@ const StyledFooter = styled.footer`
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    @media (max-width: 1280px) {
+      flex-wrap: wrap;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
     & > div {
       flex: 0 0 25%;
       line-height: 180%;
+      @media (max-width: 1280px) {
+        flex: 0 0 100%;
+        margin-bottom: 16px;
+      }
       strong {
-        color: var(--color-primary-light)
+        color: var(--color-primary-light);
       }
       a {
         color: inherit;

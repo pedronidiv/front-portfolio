@@ -15,12 +15,18 @@
 
   /** Container */
   --container-width: 1280px;
+  @media (max-width: 1280px) {
+    --container-width: calc(100% - 32px);
+  }
 
   /** Box */
   --box-padding: 64px;
+  @media (max-width: 1280px) {
+    --box-padding: 16px;
+  }
 
   /** Input */
-  --input-border: 1px solid rgba(255,255,255,.15);
+  --input-border: 1px solid rgba(255, 255, 255, 0.15);
   --input-height: 50px;
 }
 
@@ -40,7 +46,7 @@ html {
 
 a {
   text-decoration: none;
-  color: var(--color-primary-light)
+  color: var(--color-primary-light);
 }
 
 strong {
@@ -52,5 +58,15 @@ strong {
     &--#{$i} {
       filter: brightness(unquote("1.") + $i);
     }
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+@media (max-width: 1280px) {
+  .hide-mobile {
+    display: none !important;
   }
 }
