@@ -6,14 +6,12 @@ import BoxList from "./BoxList";
 import Button from "./Button";
 import styled from "styled-components";
 
-const HomeAbout = () => {
+const HomeAbout = (props) => {
   const [activeListItem, setActiveListItem] = useState("");
 
   return (
     <Box
-      style={{
-        marginTop: 'calc(-1 * var(--header-height))'
-      }} 
+      {...props}
       aside={
         <HomeAboutAside
           activeListItem={activeListItem}
@@ -39,7 +37,7 @@ const HomeAbout = () => {
         <br />
         <Button
           onClick={() => {
-            setActiveListItem("graduacao");
+            setActiveListItem({key: 'graduacao'});
           }}
         >
           Quero!

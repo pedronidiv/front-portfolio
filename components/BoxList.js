@@ -33,9 +33,9 @@ const BoxList = ({
         <StyledBoxListItem
           tabIndex="0"
           role="button"
-          onClick={() => _onItemSelected(key)}
+          onClick={() => _onItemSelected({key, label})}
           key={key}
-          className={_activeItem === key ? "active" : undefined}
+          className={_activeItem?.key === key ? "active" : undefined}
         >
           {label}
         </StyledBoxListItem>
