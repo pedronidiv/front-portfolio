@@ -6,14 +6,12 @@ import BoxContent from "./BoxContent";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 
-const HomeSkills = () => {
+const HomeSkills = (props) => {
   const [activeListItem, setActiveListItem] = useState("");
 
   return (
     <Box
-      style={{
-        marginTop: 64,
-      }}
+      {...props}
       direction="bottom right"
       asideProps={{
         style: {
@@ -33,7 +31,7 @@ const HomeSkills = () => {
       <Title
         direction="right"
         color="secondary"
-        subTitle="Habilidades"
+        subTitle="Conhecimentos"
         title={<h2>Desenvolvedor full stack</h2>}
       />
       <BoxContent>
@@ -138,13 +136,10 @@ export const HomeSkillsSwiper = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <StyledSwiperNext onClick={() => console.log(swiper.slideNext())}>
-        NEXT
-      </StyledSwiperNext>
     </StyledSwiperWrapper>
   );
 };
-const StyledSwiperNext = styled.div``;
+
 const StyledSwiperWrapper = styled.div`
   --swiper-navigation-size: 24px;
   margin-left: calc(-1 * var(--box-padding));
