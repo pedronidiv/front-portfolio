@@ -5,7 +5,6 @@ import Link from "next/link";
 import { scrollTo } from "../helpers";
 
 const HomeBanner = (props) => {
-
   return (
     <StyledHomeBanner>
       <div>
@@ -25,14 +24,21 @@ const HomeBanner = (props) => {
           />
           <span className="subtitle">FULL STACK DEVELOPER</span>
           <br />
-          <Link href="/about">
-            <a>
-              <Button style={{ marginTop: 32 }}>Me conheça</Button>
-            </a>
-          </Link>
+
+          <Button
+            onClick={() =>
+              scrollTo(props.scrollToRef.current || props.scrollToRef)
+            }
+            style={{ marginTop: 32 }}
+          >
+            Me conheça
+          </Button>
+
           <br />
           <StyledHomeBannerScrollDown
-            onClick={() => scrollTo(props.scrollToRef.current || props.scrollToRef)}
+            onClick={() =>
+              scrollTo(props.scrollToRef.current || props.scrollToRef)
+            }
             src="/icon/scroll-down.svg"
             role="button"
           ></StyledHomeBannerScrollDown>
