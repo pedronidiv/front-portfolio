@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next build && next start"
+    "start": "npm install && next build && next start"
   },
   "author": "pedronidev",
   "license": "ISC"
