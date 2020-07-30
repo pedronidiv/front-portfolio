@@ -92,6 +92,7 @@ const StyledHeaderLogo = styled.a`
   width: calc(var(--header-height) * 0.8);
   height: 100%;
   transition: 0.3s;
+  cursor: pointer;
   img {
     width: 100%;
     height: 100%;
