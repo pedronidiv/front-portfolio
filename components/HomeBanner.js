@@ -22,7 +22,7 @@ const HomeBanner = (props) => {
             srcSet="/img/banner/name.png 1x, /img/banner/name@2x.png 2x"
             alt="Lucas Pedroni, nome"
           />
-          <span className="subtitle">FULL STACK DEVELOPER</span>
+          <span className="subtitle">DESENVOLVEDOR FULL STACK</span>
           <br />
 
           <Button
