@@ -21,8 +21,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "test": "jest"
+    "start": "next build && next start"
   },
   "author": "pedronidev",
   "license": "ISC"
