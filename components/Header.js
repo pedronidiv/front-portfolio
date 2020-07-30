@@ -2,38 +2,15 @@ import React, { useCallback, useState, useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Scrollspy from "react-scrollspy";
+import { scrollTo } from "../helpers";
 
-export const Header = () => {
+export const Header = ({ nav }) => {
   const router = useRouter();
 
-  const nav = [
-    {
-      href: "/",
-      label: "Home",
-    },
-    {
-      href: "/about",
-      label: "Sobre",
-    },
-    {
-      href: "/services",
-      label: "Serviços",
-    },
-    {
-      href: "/cases",
-      label: "Cases",
-    },
-    {
-      href: "/blog",
-      label: "Blog",
-    },
-    {
-      href: "/contact",
-      label: "Contato",
-    },
-  ];
-
   const [small, setSmall] = useState(false);
+
+  const [activeLink, setActiveLink] = useState("");
 
   const handleScroll = useCallback((ev) => {
     if (window.scrollY > 120) {
@@ -60,21 +37,24 @@ export const Header = () => {
           </StyledHeaderLogo>
         </Link>
         <StyledHeaderNav>
-          <ul className="pages">
+          <Scrollspy
+            items={nav.map(({ ref }) => ref.current.id)}
+            className="pages"
+            currentClassName="active"
+            offset={-100}
+          >
             {nav.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href}>
-                  <a
-                    className={
-                      router.pathname === link.href ? "active" : undefined
-                    }
-                  >
-                    {link.label}
-                  </a>
-                </Link>
+              <li
+                key={link.label}
+                onClick={(ev) => {
+                  ev.preventDefault()
+                  scrollTo(link.ref);
+                }}
+              >
+                <a href={`#${link.ref.current.id}`}>{link.label}</a>
               </li>
             ))}
-          </ul>
+          </Scrollspy>
           <ul className="social">
             <li>
               <a target="blank" href="http://instagram.com/pedronidev">
@@ -163,44 +143,48 @@ const StyledHeaderNav = styled.nav`
     li:first-child a {
       margin-left: 0;
     }
-    li a {
-      color: rgba(255, 255, 255, 0.5);
-      text-decoration: none;
-      margin-left: 23px;
-      margin-right: 23px;
-      padding: 0 2px;
-      transition: 0.3s;
-      height: 100%;
-      width: auto;
-      display: inline-flex;
-      place-items: center;
-      place-content: center;
-      position: relative;
-      &::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-        transform: translateX(-50%);
+    li {
+      a {
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        margin-left: 23px;
+        margin-right: 23px;
+        padding: 0 2px;
         transition: 0.3s;
-        width: 0px;
-        height: 1px;
-        background-color: transparent;
-      }
-      &:hover {
-        color: white;
+        height: 100%;
+        width: auto;
+        display: inline-flex;
+        place-items: center;
+        place-content: center;
+        position: relative;
         &::before {
-          background-color: white;
-          width: 100%;
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%);
+          transition: 0.3s;
+          width: 0px;
+          height: 1px;
+          background-color: transparent;
+        }
+        &:hover {
+          color: white;
+          &::before {
+            background-color: white;
+            width: 100%;
+          }
         }
       }
       &.active {
-        color: var(--color-primary-light);
-        font-weight: 600;
-        &::before {
-          width: 100%;
-          background-color: var(--color-primary-light);
-          height: 2px;
+        a {
+          color: var(--color-primary-light);
+          font-weight: 600;
+          &::before {
+            width: 100%;
+            background-color: var(--color-primary-light);
+            height: 2px;
+          }
         }
       }
     }
