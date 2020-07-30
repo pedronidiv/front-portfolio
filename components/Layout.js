@@ -1,17 +1,17 @@
 import React from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 import styled from "styled-components";
 import Head from "next/head";
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, nav = [] }) => {
   return (
     <>
-      <Head>
-        
-      </Head>
+      <Head></Head>
       <LayoutStyled>
-        <Header />
+        <Header nav={nav} />
         {children}
+        <Footer />
       </LayoutStyled>
     </>
   );
@@ -23,6 +23,8 @@ const LayoutStyled = styled.div`
   background-image: url(/img/background.jpg);
   background-size: cover;
   background-position: top center;
+  z-index: 1;
+  position: relative;
 `;
 
 export default Layout;
