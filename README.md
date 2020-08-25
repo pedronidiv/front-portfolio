@@ -1,4 +1,6 @@
-# lucaspedroni.com.br/pedroni.dev
+# Porfolio Lucas Pedroni
+
+Veja como está ficando http://lucaspedroni.com.br:3000
 
 Front-end do meu site pessoal, ainda em desenvolvimento.
 
