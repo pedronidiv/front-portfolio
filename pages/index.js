@@ -64,6 +64,7 @@ const Home = ({ data }) => {
           style={{
             marginTop: "calc(-1 * var(--header-height))",
           }}
+          contactAnchorRef={contactAnchorRef}
         />
       </div>
       <div id="skillsAnchor" ref={skillsAnchorRef}>
