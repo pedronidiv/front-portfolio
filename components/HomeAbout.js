@@ -39,7 +39,7 @@ const HomeAbout = (props) => {
         <br />
         <Button
           onClick={() => {
-            ("graduação");
+            scrollTo(props.contactAnchorRef.current)
           }}
         >
           Entre em contato comigo
