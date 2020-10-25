@@ -57,7 +57,7 @@ export const Header = ({ nav }) => {
           </Scrollspy>
           <ul className="social">
             <li>
-              <a target="blank" href="http://github.com/pedronidev">
+              <a target="blank" href="http://github.com/pedroni">
                 <img width="19" height="19" src="/icon/github.svg" alt="" />
               </a>
             </li>
