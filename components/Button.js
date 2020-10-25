@@ -8,6 +8,8 @@ const Button = ({color = 'primary', ...props}) => {
 const StyledButton = styled.button`
   height: 50px;
   min-width: 200px;
+  padding-left: 32px;
+  padding-right: 32px;
   display: inline-flex;
   background-color: var(--color-primary);
   background-image: linear-gradient(

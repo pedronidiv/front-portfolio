@@ -1,90 +1,64 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useMemo } from "react";
 import Box from "./Box";
 import Title from "./Title";
 import BoxContent from "./BoxContent";
 import BoxList from "./BoxList";
 import Button from "./Button";
-import styled from "styled-components";
 import useMobile from "../hooks/useMobile";
-
+import HomeAboutContent, { getByKey } from "./HomeAboutContent";
+import { scrollTo } from "../helpers";
 const HomeAbout = (props) => {
-  const [activeListItem, setActiveListItem] = useState("");
+  const [activeListKey, setActiveListKey] = useState("ola");
   const isMobile = useMobile();
-
+  const content = useMemo(() => getByKey(activeListKey) || {}, [activeListKey]);
+  const onListItemSelected = useCallback((key) => setActiveListKey(key), [
+    setActiveListKey,
+  ]);
   return (
     <Box
       {...props}
       aside={
         !isMobile && (
           <HomeAboutAside
-            activeListItem={activeListItem}
-            onListItemSelected={(key) => setActiveListItem(key)}
+            activeListKey={activeListKey}
+            onListItemSelected={onListItemSelected}
           />
         )
       }
     >
-      <Title subTitle="Sobre" title={<h2>Olá, me chamo Lucas Pedroni</h2>} />
+      <Title subTitle={content.label} title={<h2>{content.title}</h2>} />
       {isMobile && (
         <HomeAboutAside
-          activeListItem={activeListItem}
-          onListItemSelected={(key) => setActiveListItem(key)}
+          activeListKey={activeListKey}
+          onListItemSelected={onListItemSelected}
         />
       )}
       <BoxContent>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus
-        id purus sed ornare. Quisque vehicula nisl placerat interdum dignissim.
-        Sed rhoncus interdum augue. Proin in congue tellus. Aliquam pulvinar
-        urna ut lorem iaculis, rutrum <a href="#">posuere</a> tortor egestas.
-        <br />
-        <br />
-        Sed sit amet felis lorem. Ut elementum vestibulum ligula vitae aliquam.
-        Pellentesque sit amet lorem laoreet, auctor sapien sed, sodales justo.
-        In ac felis et augue rutrum consectetur non quis risus.
-        <br />
-        <br />
-        <strong>Quer saber mais sobre minhas especializações?</strong>
+        {content.content}
         <br />
         <br />
         <Button
           onClick={() => {
-            setActiveListItem({ key: "graduacao" });
+            ("graduação");
           }}
         >
-          Quero!
+          Entre em contato comigo
         </Button>
       </BoxContent>
     </Box>
   );
 };
 
-const HomeAboutAside = ({ activeListItem, onListItemSelected = () => {} }) => {
-  const list = [
-    {
-      key: "minha-biografia",
-      label: "Minha biografia",
-    },
-    {
-      key: "graduacao",
-      label: "Graduação",
-    },
-    {
-      key: "missao",
-      label: "Missão",
-    },
-    {
-      key: "visao",
-      label: "Visão",
-    },
-    {
-      key: "valores",
-      label: "Valores",
-    },
-  ];
+const HomeAboutAside = ({ activeListKey, onListItemSelected = () => {} }) => {
+  const list = HomeAboutContent;
+  const content = useMemo(() => getByKey(activeListKey) || {}, [activeListKey]);
 
-  const _onListItemSelected = useCallback((key) => {
-    onListItemSelected(key);
-    console.log(key);
-  });
+  const _onListItemSelected = useCallback(
+    (content) => {
+      onListItemSelected(content?.key);
+    },
+    [onListItemSelected]
+  );
   return (
     <>
       <img
@@ -98,7 +72,7 @@ const HomeAboutAside = ({ activeListItem, onListItemSelected = () => {} }) => {
       <BoxList
         list={list}
         onItemSelected={_onListItemSelected}
-        activeItem={activeListItem}
+        activeItem={content}
       ></BoxList>
     </>
   );
