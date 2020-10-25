@@ -1,15 +1,20 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import Box from "./Box";
 import Title from "./Title";
 import BoxContent from "./BoxContent";
 import BoxList from "./BoxList";
 import Button from "./Button";
-import styled from "styled-components";
 import useMobile from "../hooks/useMobile";
+import HomeServicesContent, { getByKey } from "./HomeServicesContent";
+import { scrollTo } from "../helpers";
 
 const HomeServices = (props) => {
-  const [activeListItem, setActiveListItem] = useState(null);
+  const [activeListKey, setActiveListKey] = useState("aplicativos");
   const isMobile = useMobile();
+  const content = useMemo(() => getByKey(activeListKey) || {}, [activeListKey]);
+  const onListKeySelected = useCallback((key) => setActiveListKey(key), [
+    setActiveListKey,
+  ]);
 
   return (
     <Box
@@ -23,81 +28,46 @@ const HomeServices = (props) => {
       aside={
         !isMobile && (
           <HomeServicesAside
-            activeListItem={activeListItem}
-            onListItemSelected={(key) => setActiveListItem(key)}
+            activeListKey={activeListKey}
+            onListKeySelected={onListKeySelected}
           />
         )
       }
     >
-      <Title
-        subTitle="Serviços"
-        title={
-          <h2>{activeListItem?.label || "Soluções para qualquer projeto"}</h2>
-        }
-      />
+      <Title subTitle={content.label} title={<h2>{content.title}</h2>} />
       {isMobile && (
         <HomeServicesAside
-          activeListItem={activeListItem}
-          onListItemSelected={(key) => setActiveListItem(key)}
+          activeListKey={activeListKey}
+          onListKeySelected={onListKeySelected}
         />
       )}
       <BoxContent>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus
-        id purus sed ornare. Quisque vehicula nisl placerat interdum dignissim.
-        Sed rhoncus interdum augue. Proin in congue tellus. Aliquam pulvinar
-        urna ut lorem iaculis, rutrum <a href="#">posuere</a> tortor egestas.
+        {content.content}
         <br />
         <br />
-        Sed sit amet felis lorem. Ut elementum vestibulum ligula vitae aliquam.
-        Pellentesque sit amet lorem laoreet, auctor sapien sed, sodales justo.
-        In ac felis et augue rutrum consectetur non quis risus.
-        <br />
-        <br />
-        <strong>E aí, vamos trocar uma ideia?</strong>
-        <br />
-        <br />
-        <Button>Vamos</Button>
+        <Button
+          onClick={() => {
+            scrollTo(props.contactAnchorRef.current);
+          }}
+        >
+          Entre em contato comigo
+        </Button>
       </BoxContent>
     </Box>
   );
 };
 
-const HomeServicesAside = ({
-  activeListItem,
-  onListItemSelected = () => {},
-}) => {
-  const list = [
-    {
-      key: "aplicativos",
-      label: "Aplicativos",
-    },
-    {
-      key: "sites-institucionais",
-      label: "Sites institucionais",
-    },
-    {
-      key: "ecommerce",
-      label: "E-commerce",
-    },
-    {
-      key: "sistemas",
-      label: "Sistemas",
-    },
+const HomeServicesAside = ({ activeListKey, onListKeySelected = () => {} }) => {
+  const list = HomeServicesContent;
 
-    {
-      key: "plataformas",
-      label: "Plataformas",
-    },
-    {
-      key: "e-muito-mais",
-      label: "E muito mais...",
-    },
-  ];
+  const content = useMemo(() => getByKey(activeListKey) || {}, [activeListKey]);
 
-  const _onListItemSelected = useCallback((item) => {
-    onListItemSelected(item);
-    console.log(item);
-  });
+  const _onListKeySelected = useCallback(
+    (content) => {
+      onListKeySelected(content?.key);
+    },
+    [onListKeySelected]
+  );
   return (
     <>
       <img
@@ -110,8 +80,8 @@ const HomeServicesAside = ({
       />
       <BoxList
         list={list}
-        onItemSelected={_onListItemSelected}
-        activeItem={activeListItem}
+        onItemSelected={_onListKeySelected}
+        activeItem={content}
       ></BoxList>
     </>
   );

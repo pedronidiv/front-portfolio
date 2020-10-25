@@ -84,6 +84,7 @@ const Home = ({ data }) => {
           style={{
             marginTop: 64,
           }}
+          contactAnchorRef={contactAnchorRef}
         />
       </div>
       <div id="contactAnchor" ref={contactAnchorRef}>
