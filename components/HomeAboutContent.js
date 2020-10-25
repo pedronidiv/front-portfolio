@@ -35,7 +35,8 @@ const contents = [
   },
 ];
 
-export default contents;
 export const getByKey = (key) => {
   return contents.find((content) => content.key === key);
 };
+
+export default contents;
